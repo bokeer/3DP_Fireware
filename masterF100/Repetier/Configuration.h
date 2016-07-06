@@ -740,7 +740,7 @@ A good start is 30 lower then the optimal value. You need to leave room for cool
 
 // When temperature exceeds max temp, your heater will be switched off.
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
-#define MAXTEMP 240
+#define MAXTEMP 260
 
 /** Extreme values to detect defect thermistors. */
 #define MIN_DEFECT_TEMPERATURE -10
@@ -811,19 +811,19 @@ use a mechanical endstop connected with GND. Set value to false for no pull-up
 on this endstop.
 */
 #define ENDSTOP_PULLUP_X_MIN true//..false
-#define ENDSTOP_PULLUP_Y_MIN true//..false
+#define ENDSTOP_PULLUP_Y_MIN false
 #define ENDSTOP_PULLUP_Z_MIN true//..false
-#define ENDSTOP_PULLUP_X_MAX true
+#define ENDSTOP_PULLUP_X_MAX false
 #define ENDSTOP_PULLUP_Y_MAX true
-#define ENDSTOP_PULLUP_Z_MAX true//..false
+#define ENDSTOP_PULLUP_Z_MAX false
 
 //set to true to invert the logic of the endstops
 #define ENDSTOP_X_MIN_INVERTING false
-#define ENDSTOP_Y_MIN_INVERTING true //20160603
+#define ENDSTOP_Y_MIN_INVERTING false
 #define ENDSTOP_Z_MIN_INVERTING false
-#define ENDSTOP_X_MAX_INVERTING true//20160603
+#define ENDSTOP_X_MAX_INVERTING false
 #define ENDSTOP_Y_MAX_INVERTING false
-#define ENDSTOP_Z_MAX_INVERTING true//20160603
+#define ENDSTOP_Z_MAX_INVERTING false
 // Set the values true where you have a hardware endstop. The Pin number is taken from pins.h.
 
 #define MIN_HARDWARE_ENDSTOP_X true
