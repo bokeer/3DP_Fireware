@@ -106,7 +106,7 @@ We can connect BlueTooth to serial converter module directly to boards based on 
   c) pin 17 and 18 of AUX4 connector, then set BLUETOOTH_SERIAL to 2 (RX from BT to AUX4 p18, TX from BT to AUX4 p17)
   Comment out or set the BLUETOOTH_SERIAL to 0 or -1 to disable this feature.
 */
-#define BLUETOOTH_SERIAL   0                     // Port number (1..3) - For RUMBA use 3
+#define BLUETOOTH_SERIAL   0                      // Port number (1..3) - For RUMBA use 3
 #define BLUETOOTH_BAUD     115200                 // communication speed
 
 // Uncomment the following line if you are using Arduino compatible firmware made for Arduino version earlier then 1.0
@@ -267,7 +267,7 @@ controlled by settings in extruder 0 definition. */
 #define EXT0_STEP_PIN E0_STEP_PIN
 #define EXT0_DIR_PIN E0_DIR_PIN
 // set to false/true for normal / inverse direction
-#define EXT0_INVERSE false//true  20160603
+#define EXT0_INVERSE false
 #define EXT0_ENABLE_PIN E0_ENABLE_PIN
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
 #define EXT0_ENABLE_ON 0
@@ -689,15 +689,15 @@ Value is used for all generic tables created. */
 // ############# Heated bed configuration ########################
 
 /** \brief Set true if you have a heated bed connected to your board, false if not */
-#define HAVE_HEATED_BED 1
+#define HAVE_HEATED_BED 0
 
-#define HEATED_BED_MAX_TEMP 80//230  20160603  
+#define HEATED_BED_MAX_TEMP 80
 /** Skip M190 wait, if heated bed is already within x degrees. Fixed numbers only, 0 = off. */
 #define SKIP_M190_IF_WITHIN 3
 
 // Select type of your heated bed. It's the same as for EXT0_TEMPSENSOR_TYPE
 // set to 0 if you don't have a heated bed
-#define HEATED_BED_SENSOR_TYPE 14//20160603
+#define HEATED_BED_SENSOR_TYPE 14
 /** Analog pin of analog sensor to read temperature of heated bed.  */
 #define HEATED_BED_SENSOR_PIN TEMP_1_PIN
 /** \brief Pin to enable heater for bed. */
@@ -733,7 +733,7 @@ A good start is 30 lower then the optimal value. You need to leave room for cool
 /** Dgain.  Overridden if EEPROM activated.*/
 #define HEATED_BED_PID_DGAIN 290
 // maximum time the heater can be switched on. Max = 255.  Overridden if EEPROM activated.
-#define HEATED_BED_PID_MAX 150
+#define HEATED_BED_PID_MAX 255
 // Time to see a temp. change when fully heating. Consider that beds at higher temp. need longer to rise and cold
 // beds need some time to get the temp. to the sensor. Time is in milliseconds! Set 0 to disable
 #define HEATED_BED_DECOUPLE_TEST_PERIOD 300000
@@ -810,10 +810,10 @@ PRINTER_MODE_CNC 2
 use a mechanical endstop connected with GND. Set value to false for no pull-up
 on this endstop.
 */
-#define ENDSTOP_PULLUP_X_MIN true//..false
+#define ENDSTOP_PULLUP_X_MIN false
 #define ENDSTOP_PULLUP_Y_MIN false
-#define ENDSTOP_PULLUP_Z_MIN true//..false
-#define ENDSTOP_PULLUP_X_MAX false
+#define ENDSTOP_PULLUP_Z_MIN true
+#define ENDSTOP_PULLUP_X_MAX true
 #define ENDSTOP_PULLUP_Y_MAX true
 #define ENDSTOP_PULLUP_Z_MAX false
 
@@ -824,14 +824,15 @@ on this endstop.
 #define ENDSTOP_X_MAX_INVERTING false
 #define ENDSTOP_Y_MAX_INVERTING false
 #define ENDSTOP_Z_MAX_INVERTING false
+
 // Set the values true where you have a hardware endstop. The Pin number is taken from pins.h.
 
-#define MIN_HARDWARE_ENDSTOP_X true
-#define MIN_HARDWARE_ENDSTOP_Y false//20160603
+#define MIN_HARDWARE_ENDSTOP_X false
+#define MIN_HARDWARE_ENDSTOP_Y false
 #define MIN_HARDWARE_ENDSTOP_Z true
-#define MAX_HARDWARE_ENDSTOP_X false//20160603
-#define MAX_HARDWARE_ENDSTOP_Y true//20160603
-#define MAX_HARDWARE_ENDSTOP_Z false//20160603
+#define MAX_HARDWARE_ENDSTOP_X true
+#define MAX_HARDWARE_ENDSTOP_Y true
+#define MAX_HARDWARE_ENDSTOP_Z false
 
 //If your axes are only moving in one direction, make sure the endstops are connected properly.
 //If your axes move in one direction ONLY when the endstops are triggered, set ENDSTOPS_INVERTING to true here
@@ -859,27 +860,27 @@ on this endstop.
 // Inverting motor direction. Only in case of pure cartesian printers, this
 // is also the axis you invert!
 #define INVERT_X_DIR false
-#define INVERT_Y_DIR true
+#define INVERT_Y_DIR false
 #define INVERT_Z_DIR false
 
 //// ENDSTOP SETTINGS:
 // Sets direction of endstops when homing; 1=MAX, -1=MIN
-#define X_HOME_DIR -1
-#define Y_HOME_DIR 1//20160603
-#define Z_HOME_DIR -1//..1
+#define X_HOME_DIR  1
+#define Y_HOME_DIR  1
+#define Z_HOME_DIR -1
 
 // Delta robot radius endstop
 #define max_software_endstop_r true
 
 //If true, axis won't move to coordinates less than zero.
-#define min_software_endstop_x false
-#define min_software_endstop_y true//20160603
+#define min_software_endstop_x true
+#define min_software_endstop_y true
 #define min_software_endstop_z false
 
 //If true, axis won't move to coordinates greater than the defined lengths below.
-#define max_software_endstop_x true
-#define max_software_endstop_y false//20160603
-#define max_software_endstop_z true//20160603
+#define max_software_endstop_x false
+#define max_software_endstop_y false
+#define max_software_endstop_z true
 
 // If during homing the endstop is reached, ho many mm should the printer move back for the second try
 #define ENDSTOP_X_BACK_MOVE 5
@@ -901,15 +902,15 @@ on this endstop.
 // You can disable endstop checking for print moves. This is needed, if you get sometimes
 // false signals from your endstops. If your endstops don't give false signals, you
 // can set it on for safety.
-#define ALWAYS_CHECK_ENDSTOPS 0
+#define ALWAYS_CHECK_ENDSTOPS 1
 
 // maximum positions in mm - only fixed numbers!
 // For delta robot Z_MAX_LENGTH is the maximum travel of the towers and should be set to the distance between the hotend
 // and the platform when the printer is at its home position.
 // If EEPROM is enabled these values will be overridden with the values in the EEPROM
-#define X_MAX_LENGTH 170
-#define Y_MAX_LENGTH 170
-#define Z_MAX_LENGTH 160//20160603
+#define X_MAX_LENGTH 100
+#define Y_MAX_LENGTH 100
+#define Z_MAX_LENGTH 120
 // Coordinates for the minimum axis. Can also be negative if you want to have the bed start at 0 and the printer can go to the left side
 // of the bed. Maximum coordinate is given by adding the above X_MAX_LENGTH values.
 #define X_MIN_POS 0
@@ -1061,8 +1062,8 @@ Mega. Used only for nonlinear systems like delta or tuga. */
 #define MAX_FEEDRATE_Z 5
 
 /** Home position speed in mm/s. Overridden if EEPROM activated. */
-#define HOMING_FEEDRATE_X 60//20160603
-#define HOMING_FEEDRATE_Y 60//20160603
+#define HOMING_FEEDRATE_X 60
+#define HOMING_FEEDRATE_Y 60
 #define HOMING_FEEDRATE_Z 3
 
 /** Set order of axis homing. Use HOME_ORDER_XYZ and replace XYZ with your order. 
@@ -1071,7 +1072,7 @@ Mega. Used only for nonlinear systems like delta or tuga. */
  * first a z home to get some reference, then raise to ZHOME_HEAT_HEIGHT do xy homing and then after
  * heating to minimum ZHOME_MIN_TEMPERATURE will z home again for correct height.   
  * */
-#define HOMING_ORDER HOME_ORDER_XYZ//HOME_ORDER_ZXY
+#define HOMING_ORDER HOME_ORDER_XYZ
 // Used for homing order HOME_ORDER_ZXYTZ
 #define ZHOME_MIN_TEMPERATURE 0
 // needs to heat all extruders (1) or only current extruder (0)
@@ -1281,7 +1282,7 @@ second, if our queue is empty should prevent this. Comment it, if you don't wan'
 /** \brief Sets time for echo debug
 
 You can set M111 1 which enables ECHO of commands sent. This define specifies the position,
-when it will be executed. In the original FiveD software, echo is done after receiving the
+when it will be executed. In the originalee FiveD software, echo is done after receiving the
 command. With checksum you know, how it looks from the sending string. With this define
 uncommented, you will see the last command executed. To be more specific: It is written after
 execution. This helps tracking errors, because there may be 8 or more commands in the queue
@@ -1300,7 +1301,7 @@ matches, the stored values are used to overwrite the settings.
 IMPORTANT: With mode <>0 some changes in Configuration.h are not set any more, as they are
            taken from the EEPROM.
 */
-#define EEPROM_MODE 1
+#define EEPROM_MODE 2
 
 
 /**************** duplicate motor driver ***************
@@ -1570,6 +1571,7 @@ Separate commands by \n */
 
 /** If a checksum is sent, all future commands must also contain a checksum. Increases reliability especially for binary protocol. */
 #define FEATURE_CHECKSUM_FORCED 1
+
 
 /** Should support for fan control be compiled in. If you enable this make sure
 the FAN pin is not the same as for your second extruder. RAMPS e.g. has FAN_PIN in 9 which
