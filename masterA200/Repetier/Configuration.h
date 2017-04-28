@@ -908,9 +908,9 @@ on this endstop.
 // For delta robot Z_MAX_LENGTH is the maximum travel of the towers and should be set to the distance between the hotend
 // and the platform when the printer is at its home position.
 // If EEPROM is enabled these values will be overridden with the values in the EEPROM
-#define X_MAX_LENGTH 300
-#define Y_MAX_LENGTH 230
-#define Z_MAX_LENGTH 220
+#define X_MAX_LENGTH 200
+#define Y_MAX_LENGTH 200
+#define Z_MAX_LENGTH 190
 // Coordinates for the minimum axis. Can also be negative if you want to have the bed start at 0 and the printer can go to the left side
 // of the bed. Maximum coordinate is given by adding the above X_MAX_LENGTH values.
 #define X_MIN_POS 0
@@ -1301,7 +1301,7 @@ matches, the stored values are used to overwrite the settings.
 IMPORTANT: With mode <>0 some changes in Configuration.h are not set any more, as they are
            taken from the EEPROM.
 */
-#define EEPROM_MODE 2
+#define EEPROM_MODE 1
 
 
 /**************** duplicate motor driver ***************
@@ -1366,7 +1366,7 @@ This defines the full power duration before returning to set value. Time is in m
 
 /* A watchdog resets the printer, if a signal is not send within predefined time limits. That way we can be sure that the board
 is always running and is not hung up for some unknown reason. */
-#define FEATURE_WATCHDOG 1
+#define FEATURE_WATCHDOG 1  // 1 cheak 0 no cheak
 
 /* Z-Probing */
 
