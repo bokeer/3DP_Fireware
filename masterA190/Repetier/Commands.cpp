@@ -20,10 +20,26 @@ which based on Tonokip RepRap firmware rewrite based off of Hydra-mmm firmware.
 */
 
 #include "Repetier.h"
+#include "sha256.h"
 
 const int8_t sensitive_pins[] PROGMEM = SENSITIVE_PINS; // Sensitive pin list for M42
 int Commands::lowestRAMValue = MAX_RAM;
 int Commands::lowestRAMValueSend = MAX_RAM;
+uint8_t hmacKey1[]={
+    0xba, 0x78, 0x16, 0xbf, 0x8f,
+    0x01, 0xcf, 0xea, 0x41, 0x41,
+    0x40, 0xde, 0x5d, 0xae, 0x22,
+    0x23, 0xb0, 0x03, 0x61, 0xa3
+};
+
+void printHash(uint8_t* hash) {
+  int i;
+  for (i=0; i<32; i++) {
+    Com::print("0123456789abcdef"[hash[i]>>4]);
+    Com::print("0123456789abcdef"[hash[i]&0xf]);
+  }
+    Com::println();
+}
 
 void Commands::commandLoop() {
     while(true) {
@@ -1812,6 +1828,16 @@ void Commands::processMCode(GCode *com) {
             Com::printFLN(Com::tFirmware);
             reportPrinterUsage();
             Printer::reportPrinterMode();
+            break;
+        case 798:
+            if (com->hasString()) {
+                Com::print("[[[");
+                Sha256.initHmac(hmacKey1, 20);
+                Sha256.print(com->text);
+                printHash(Sha256.resultHmac());
+                Com::print("]]]");
+                Com::println();
+            }
             break;
         case 114: // M114
             printCurrentPosition(PSTR("M114 "));
