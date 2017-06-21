@@ -1072,7 +1072,7 @@ Mega. Used only for nonlinear systems like delta or tuga. */
  * first a z home to get some reference, then raise to ZHOME_HEAT_HEIGHT do xy homing and then after
  * heating to minimum ZHOME_MIN_TEMPERATURE will z home again for correct height.   
  * */
-#define HOMING_ORDER HOME_ORDER_XYZ
+#define HOMING_ORDER HOME_ORDER_YXZ
 // Used for homing order HOME_ORDER_ZXYTZ
 #define ZHOME_MIN_TEMPERATURE 0
 // needs to heat all extruders (1) or only current extruder (0)

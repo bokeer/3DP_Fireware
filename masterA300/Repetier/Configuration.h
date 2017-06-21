@@ -733,7 +733,7 @@ A good start is 30 lower then the optimal value. You need to leave room for cool
 /** Dgain.  Overridden if EEPROM activated.*/
 #define HEATED_BED_PID_DGAIN 290
 // maximum time the heater can be switched on. Max = 255.  Overridden if EEPROM activated.
-#define HEATED_BED_PID_MAX 150
+#define HEATED_BED_PID_MAX 255
 // Time to see a temp. change when fully heating. Consider that beds at higher temp. need longer to rise and cold
 // beds need some time to get the temp. to the sensor. Time is in milliseconds! Set 0 to disable
 #define HEATED_BED_DECOUPLE_TEST_PERIOD 300000
@@ -1072,7 +1072,7 @@ Mega. Used only for nonlinear systems like delta or tuga. */
  * first a z home to get some reference, then raise to ZHOME_HEAT_HEIGHT do xy homing and then after
  * heating to minimum ZHOME_MIN_TEMPERATURE will z home again for correct height.   
  * */
-#define HOMING_ORDER HOME_ORDER_XYZ
+#define HOMING_ORDER HOME_ORDER_YXZ
 // Used for homing order HOME_ORDER_ZXYTZ
 #define ZHOME_MIN_TEMPERATURE 0
 // needs to heat all extruders (1) or only current extruder (0)
@@ -1301,7 +1301,7 @@ matches, the stored values are used to overwrite the settings.
 IMPORTANT: With mode <>0 some changes in Configuration.h are not set any more, as they are
            taken from the EEPROM.
 */
-#define EEPROM_MODE 2
+#define EEPROM_MODE 1
 
 
 /**************** duplicate motor driver ***************
